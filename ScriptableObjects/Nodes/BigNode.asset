@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53efb29a544ae904a891212c48486d72, type: 3}
+  m_Name: BigNode
+  m_EditorClassIdentifier: 
+  color: {r: 0.71155214, g: 0.7735849, b: 0.71702564, a: 1}
+  visualPrefab: {fileID: 5646245624129905863, guid: 9441c7a225e9198499b544ed488dc202, type: 3}
+  coordDatas:
+  - layer: 0
+    coord:
+      x: 0
+      y: 0
+      isValid: 1
+  - layer: 0
+    coord:
+      x: 0
+      y: 1
+      isValid: 1
+  - layer: 0
+    coord:
+      x: 1
+      y: 0
+      isValid: 1
+  - layer: 0
+    coord:
+      x: 1
+      y: -1
+      isValid: 1
+  - layer: 0
+    coord:
+      x: 0
+      y: -1
+      isValid: 1
+  - layer: 0
+    coord:
+      x: -1
+      y: 0
+      isValid: 1
+  - layer: 0
+    coord:
+      x: -1
+      y: 1
+      isValid: 1
+  fullColor: {r: 0.16838734, g: 0.8301887, b: 0.36119568, a: 1}

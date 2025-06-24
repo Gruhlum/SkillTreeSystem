@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cf1107a34604fd43b3e950d9aa1578c, type: 3}
+  m_Name: SmallNode
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 98aa3c1162a9bb7458defbdf98db91eb, type: 3}
+  iconColor: {r: 1, g: 1, b: 1, a: 1}
+  data: {fileID: 11400000, guid: bc704e51af3be92448b3f99c7166e0f6, type: 2}
+  ghostPrefab: {fileID: 0}
+  displayName: Small Node
+  isDraggable: 1
+  isReplaceable: 1
+  placementSound: {fileID: 0}

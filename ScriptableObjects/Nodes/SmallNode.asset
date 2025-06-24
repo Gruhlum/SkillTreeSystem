@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2049bf89a71f7c749bdbb00ab054bbcc, type: 3}
+  m_Name: SmallNode
+  m_EditorClassIdentifier: 
+  color: {r: 0.4528302, g: 0.4528302, b: 0.4528302, a: 1}
+  visualPrefab: {fileID: -8874395459559525929, guid: 360ca9cd3b4a8c94c91987461ed6de6a, type: 3}
+  center:
+    layer: 0
+    coord:
+      x: 0
+      y: 0
+      isValid: 1
+  selectedColor: {r: 0.3647453, g: 0.754717, b: 0.25987896, a: 1}
+  clickableColor: {r: 0.496351, g: 0.6226415, b: 0.52909297, a: 1}
