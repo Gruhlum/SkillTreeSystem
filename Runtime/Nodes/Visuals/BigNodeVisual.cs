@@ -27,7 +27,7 @@ namespace HexTecGames.SkillTree
         {
             if (bigNode.ScriptableObject != null)
             {
-                nameGUI.text = bigNode.ScriptableObject.name;
+                nameGUI.text = bigNode.ScriptableObject.Name;
             }
             else nameGUI.text = string.Empty;
 
@@ -59,14 +59,21 @@ namespace HexTecGames.SkillTree
 
         private void UpdateIncreaseText(BigNode bigNode)
         {
+            string suffix;
+            if (bigNode.ScriptableObject != null && bigNode.ScriptableObject.IsPercent())
+            {
+                suffix = "%";
+            }
+            else suffix = string.Empty;
+
             if (bigNode.CurrentIncrease == 0)
             {
                 valueGUI.color = inactiveTextColor;
-                valueGUI.text = $"+{bigNode.IncreasePerNode}";
+                valueGUI.text = $"+{bigNode.IncreasePerNode}{suffix}";
             }
             else
             {
-                valueGUI.text = $"+{bigNode.CurrentIncrease}";
+                valueGUI.text = $"+{bigNode.CurrentIncrease}{suffix}";
                 valueGUI.color = normalTextColor;
             } 
         }

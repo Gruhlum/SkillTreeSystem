@@ -7,13 +7,15 @@ using UnityEngine;
 namespace HexTecGames.SkillTree
 {
     [CreateAssetMenu(menuName = "HexTecGames/Sandbox/BigNodeData")]
-    public class BigNodeData : MultiObjectData<BigNode, BigNodeData, BigNodeVisual>
+    public class BigNodeData : MultiObjectData<BigNode, BigNodeData, BigNodeVisual>, IGridObjectCreator
     {
         public Color fullColor;
 
-        public override GridObject CreateGridObject(BaseGrid grid, Coord center, int rotation, GridObjectSaveData saveData = null)
+        public GridObject CreateGridObject(BaseGrid grid, Coord center, int rotation, GridObjectSaveData saveData = null)
         {
-            return new BigNode(this, grid, center, rotation, saveData);
+            var result = new BigNode(this, center, rotation, saveData);
+            result.AddToGrid(grid);
+            return result;
         }
     }
 }

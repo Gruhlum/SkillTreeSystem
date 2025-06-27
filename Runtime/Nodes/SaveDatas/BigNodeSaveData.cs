@@ -13,7 +13,7 @@ namespace HexTecGames.SkillTree
 
         public BigNodeSaveData(BigNode bigNode) : base(bigNode)
         {
-            this.SO = bigNode.ScriptableObject;
+            this.SO = bigNode.ScriptableObject as ScriptableObject;
             this.increasePerNode = bigNode.IncreasePerNode;
         }
     }

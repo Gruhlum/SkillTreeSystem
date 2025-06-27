@@ -7,7 +7,7 @@ using UnityEngine;
 namespace HexTecGames.SkillTree
 {
     [CreateAssetMenu(menuName = "HexTecGames/Sandbox/SmallNodeData")]
-    public class SmallNodeData : SingleObjectData<SmallNode, SmallNodeData, SmallNodeVisual>
+    public class SmallNodeData : SingleObjectData<SmallNode, SmallNodeData, SmallNodeVisual>, IGridObjectCreator
     {
         public Color SelectedColor
         {
@@ -36,9 +36,11 @@ namespace HexTecGames.SkillTree
         }
         [SerializeField] private Color clickableColor = Color.cyan;
 
-        public override GridObject CreateGridObject(BaseGrid grid, Coord center, int rotation, GridObjectSaveData saveData = null)
+        public GridObject CreateGridObject(BaseGrid grid, Coord center, int rotation, GridObjectSaveData saveData = null)
         {
-            return new SmallNode(this, grid, center, rotation, saveData);
+            var result = new SmallNode(this, center, rotation, saveData);
+            result.AddToGrid(grid);
+            return result;
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using HexTecGames.Basics;
 using HexTecGames.EaseFunctions;
 using HexTecGames.GridBaseSystem;
+using HexTecGames.SkillTreeSystem;
 using UnityEngine;
 
 namespace HexTecGames.SkillTree
@@ -11,7 +12,7 @@ namespace HexTecGames.SkillTree
     [System.Serializable]
     public class BigNode : MultiObject<BigNode, BigNodeData, BigNodeVisual>
     {
-        private ScriptableObject scriptableObject;
+        private IBigNodeStat scriptableObject;
         private int increasePerNode = 2;
         private int currentIncrease;
 
@@ -39,7 +40,7 @@ namespace HexTecGames.SkillTree
                 OnCurrentIncreaseChanged?.Invoke(this.currentIncrease);
             }
         }
-        public ScriptableObject ScriptableObject
+        public IBigNodeStat ScriptableObject
         {
             get
             {
@@ -59,8 +60,7 @@ namespace HexTecGames.SkillTree
         public event Action<int> OnCurrentIncreaseChanged;
         public event Action<BigNode> OnUpdateRequired;
 
-        public BigNode(BigNodeData data, BaseGrid grid, Coord center, int rotation = 0, GridObjectSaveData saveData = null)
-            : base(data, grid, center, rotation, saveData)
+        public BigNode(BigNodeData data, Coord center, int rotation = 0, GridObjectSaveData saveData = null) : base(data, center, rotation, saveData)
         {
         }
 
@@ -119,7 +119,7 @@ namespace HexTecGames.SkillTree
         {
             if (saveData is BigNodeSaveData bigNodeSaveData)
             {
-                ScriptableObject = bigNodeSaveData.SO;
+                ScriptableObject = bigNodeSaveData.SO as IBigNodeStat;
                 IncreasePerNode = bigNodeSaveData.increasePerNode;
             }
             base.LoadSaveData(saveData);

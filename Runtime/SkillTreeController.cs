@@ -13,8 +13,10 @@ namespace HexTecGames.SkillTree
     public class SkillTreeController : MonoBehaviour
     {
         [SerializeField] private BaseGrid grid = default;
+        [SerializeField] private GridLoader gridLoader = default;
         [SerializeField] private GridEventSystem gridEventSystem = default;
         [SerializeField] private ConfirmWindow confirmWindow = default;
+
         public int TotalPoints
         {
             get
@@ -59,33 +61,51 @@ namespace HexTecGames.SkillTree
         private bool lastDragState;
 
         private const string SAVE_KEY = "SKILL_TREE";
+        private const string ACTIVE_NODES = "ACTIVE_NODES";
 
         private HashSet<SmallNode> smallNodes = new HashSet<SmallNode>();
 
         private bool isInvalidTree;
+        private SkillTreeSaveData saveData;
 
+        private void Awake()
+        {
+            gridLoader.OnGridLoaded += GridLoader_OnGridLoaded;
+        }
         private void Start()
         {
-            CalculateAvailablePoints();
+            saveData = SaveSystem.LoadJSON<SkillTreeSaveData>(SAVE_KEY);
+            if (saveData != null)
+            {
+                AvailablePoints = TotalPoints - saveData.activeNodes.Count;
+            }
+            else AvailablePoints = TotalPoints;
+        }
+
+
+        private void OnDestroy()
+        {
+            gridLoader.OnGridLoaded -= GridLoader_OnGridLoaded;
+        }
+
+        private void GridLoader_OnGridLoaded(BaseGrid obj)
+        {
             gridEventSystem.OnMouseClicked += GridEventSystem_OnMouseClicked;
             gridEventSystem.OnDraggingMoved += GridEventSystem_OnDraggingMoved;
             smallNodes = new HashSet<SmallNode>(grid.GetAllGridObjects<SmallNode>(0));
             FindStartNode();
             LoadSkillTreeData();
-            //SetupSmallNodes();
             CalculateNodes();
             SetupBigNodes();
         }
 
         public void LoadSkillTreeData()
         {
-            var result = SaveSystem.LoadJSON<SkillTreeSaveData>(SAVE_KEY);
-
-            if (result == null)
+            if (saveData == null)
             {
                 return;
             }
-            foreach (var coord in result.activeNodes)
+            foreach (var coord in saveData.activeNodes)
             {
                 var node = grid.GetGridObject<SmallNode>(0, coord);
                 node.IsSelected = true;
@@ -262,11 +282,6 @@ namespace HexTecGames.SkillTree
             }
         }
 
-        private void CalculateAvailablePoints()
-        {
-            AvailablePoints = TotalPoints;
-        }
-
         public void ResetTree()
         {
             foreach (var result in smallNodes)
@@ -282,7 +297,6 @@ namespace HexTecGames.SkillTree
         private void OnSaveClicked()
         {
             SaveSkillTreeData();
-            ReturnToLastScene();
         }
         private void OnDiscardClicked()
         {
@@ -296,12 +310,12 @@ namespace HexTecGames.SkillTree
         {
             if (smallNodes.Any(x => x.IsDeactivated && x.IsSelected))
             {
-                confirmWindow.Setup($"Invalid!{Environment.NewLine}Discard changes?", OnDiscardClicked, null, "Discard", "Cancel");
+                confirmWindow.Setup($"Invalid!{Environment.NewLine}Discard changes?", null, null, "Discard", "Cancel");
                 isInvalidTree = true;
             }
             else
             {
-                confirmWindow.Setup("Save changes?", OnSaveClicked, OnDiscardClicked, "Save", "Discard");
+                confirmWindow.Setup("Save changes?", OnSaveClicked, null, "Save", "Discard");
                 isInvalidTree = false;
             }
         }

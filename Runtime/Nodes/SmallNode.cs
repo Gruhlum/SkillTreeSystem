@@ -105,8 +105,7 @@ namespace HexTecGames.SkillTree
         public event Action<SmallNode, int> OnMultiplierChanged;
         //public event Action<SmallNode> OnSetupFinished;
 
-        public SmallNode(SmallNodeData data, BaseGrid grid, Coord center, int rotation = 0, GridObjectSaveData saveData = null) 
-            : base(data, grid, center, rotation, saveData)
+        public SmallNode(SmallNodeData data, Coord center, int rotation = 0, GridObjectSaveData saveData = null) : base(data, center, rotation, saveData)
         {
         }
 
