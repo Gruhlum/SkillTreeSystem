@@ -61,7 +61,6 @@ namespace HexTecGames.SkillTree
         private bool lastDragState;
 
         private const string SAVE_KEY = "SKILL_TREE";
-        private const string ACTIVE_NODES = "ACTIVE_NODES";
 
         private HashSet<SmallNode> smallNodes = new HashSet<SmallNode>();
 
@@ -71,9 +70,6 @@ namespace HexTecGames.SkillTree
         private void Awake()
         {
             gridLoader.OnGridLoaded += GridLoader_OnGridLoaded;
-        }
-        private void Start()
-        {
             saveData = SaveSystem.LoadJSON<SkillTreeSaveData>(SAVE_KEY);
             if (saveData != null)
             {
@@ -81,7 +77,6 @@ namespace HexTecGames.SkillTree
             }
             else AvailablePoints = TotalPoints;
         }
-
 
         private void OnDestroy()
         {
@@ -210,6 +205,12 @@ namespace HexTecGames.SkillTree
             {
                 node.UpdateColor();
             }
+        }
+
+        public IEnumerable<BigNode> GetBigNodes()
+        {
+            var results  = grid.GetAllGridObjects<BigNode>(0);
+            return results;
         }
 
         private void GetConnectedNeighbours(Coord center, ref List<SmallNode> connectedNodes)
