@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using HexTecGames.Basics;
 using HexTecGames.GridBaseSystem;
+using HexTecGames.GridBaseSystem.Generics;
 using UnityEngine;
 
 namespace HexTecGames.SkillTree
