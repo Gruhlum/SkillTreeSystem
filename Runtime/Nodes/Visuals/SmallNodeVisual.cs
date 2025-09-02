@@ -12,9 +12,9 @@ namespace HexTecGames.SkillTree
         [SerializeField] private Canvas canvas = default;
         [SerializeField] private TMP_Text textGUI = default;
 
-        public override void Setup(GridObject gridObj, BaseGrid grid)
+        protected override void OnSetup(GridObject gridObj, BaseGrid grid)
         {
-            base.Setup(gridObj, grid);
+            base.OnSetup(gridObj, grid);
             if (gridObj != null)
             {
                 UpdateText(gridObj as SmallNode);

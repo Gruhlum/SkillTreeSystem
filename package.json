@@ -4,11 +4,10 @@
   "displayName": "SkillTreeSystem",
   "description": "My Package",
   "unity": "2019.1",
-  "dependencies": {},
   "author": {
     "name": "HexTecGames"
   },
-  "hideInEditor": "false",
+  "hideInEditor": false,
   "samples": [
     {
       "displayName": "Example 1",
