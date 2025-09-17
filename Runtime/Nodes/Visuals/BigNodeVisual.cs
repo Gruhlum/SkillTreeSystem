@@ -14,15 +14,11 @@ namespace HexTecGames.SkillTree
         [SerializeField] private Color inactiveTextColor = Color.black;
         [SerializeField] private Color normalTextColor = Color.black;
 
-        protected override void OnSetup(GridObject tileObject, BaseGrid grid)
+        protected override void OnSetup(BigNode bigNode, BaseGrid grid)
         {
-            base.OnSetup(tileObject, grid);
-            if (tileObject is BigNode bigNode)
-            {
-                UpdateVisual(bigNode);
-            }
+            base.OnSetup(bigNode, grid);
+            UpdateVisual(bigNode);
         }
-
         private void UpdateVisual(BigNode bigNode)
         {
             if (bigNode.ScriptableObject != null)
